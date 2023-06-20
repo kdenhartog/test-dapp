@@ -1464,41 +1464,52 @@ const initialize = async () => {
     const chainId = parseInt(chainIdDiv.innerHTML, 16) || networkId;
 
     const msgParams = {
-      types: {
-        EIP712Domain: [
-          { name: 'name', type: 'string' },
-          { name: 'version', type: 'string' },
-          { name: 'chainId', type: 'uint256' },
-          { name: 'verifyingContract', type: 'address' },
-        ],
-        Person: [
-          { name: 'name', type: 'string' },
-          { name: 'wallet', type: 'address' },
-        ],
-        Mail: [
-          { name: 'from', type: 'Person' },
-          { name: 'to', type: 'Person' },
-          { name: 'contents', type: 'string' },
-        ],
+      "types": {
+          "EIP712Domain": [
+              {
+                  "name": "name",
+                  "type": "string"
+              },
+              {
+                  "name": "version",
+                  "type": "string"
+              },
+              {
+                  "name": "verifyingContract",
+                  "type": "address"
+              },
+              {
+                  "name": "chainId",
+                  "type": "uint256"
+              }
+          ],
+          "RelayRequest": [
+              {
+                  "name": "target",
+                  "type": "address"
+              },
+              {
+                  "name": "message",
+                  "type": "string"
+              }
+          ]
       },
-      primaryType: 'Mail',
-      domain: {
-        name: 'Ether Mail',
-        version: '1',
-        chainId,
-        verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC',
+      "domain": {
+          "name": "EIP-712 Test - Relayed Transaction",
+          "version": "1",
+          "chainId": 1,
+          "verifyingContract": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
       },
-      message: {
-        from: {
-          name: 'Cow',
-          wallet: '0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826',
+      "primaryType": "RelayRequest",
+      "RelayRequest": [
+        {
+          "target": "0x0101010101010101010101010101010101010101",
+          "message": "Howdy",
         },
-        to: {
-          name: 'Bob',
-          wallet: '0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB',
-        },
-        contents: 'Hello, Bob!',
-      },
+        {
+        "target": "0x0101010101010101010101010101010101010101",
+        "message": "Howdy"
+      }]
     };
     try {
       const from = accounts[0];
@@ -1522,42 +1533,54 @@ const initialize = async () => {
     const chainId = parseInt(chainIdDiv.innerHTML, 16) || networkId;
 
     const msgParams = {
-      types: {
-        EIP712Domain: [
-          { name: 'name', type: 'string' },
-          { name: 'version', type: 'string' },
-          { name: 'chainId', type: 'uint256' },
-          { name: 'verifyingContract', type: 'address' },
-        ],
-        Person: [
-          { name: 'name', type: 'string' },
-          { name: 'wallet', type: 'address' },
-        ],
-        Mail: [
-          { name: 'from', type: 'Person' },
-          { name: 'to', type: 'Person' },
-          { name: 'contents', type: 'string' },
-        ],
+      "types": {
+          "EIP712Domain": [
+              {
+                  "name": "name",
+                  "type": "string"
+              },
+              {
+                  "name": "version",
+                  "type": "string"
+              },
+              {
+                  "name": "verifyingContract",
+                  "type": "address"
+              },
+              {
+                  "name": "chainId",
+                  "type": "uint256"
+              }
+          ],
+          "RelayRequest": [
+              {
+                  "name": "target",
+                  "type": "address"
+              },
+              {
+                  "name": "message",
+                  "type": "string"
+              }
+          ]
       },
-      primaryType: 'Mail',
-      domain: {
-        name: 'Ether Mail',
-        version: '1',
-        chainId,
-        verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC',
+      "domain": {
+          "name": "EIP-712 Test - Relayed Transaction",
+          "version": "1",
+          "chainId": 1,
+          "verifyingContract": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
       },
-      message: {
-        from: {
-          name: 'Cow',
-          wallet: '0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826',
+      "primaryType": "RelayRequest",
+      "RelayRequest": [
+        {
+          "target": "0x0101010101010101010101010101010101010101",
+          "message": "Howdy",
         },
-        to: {
-          name: 'Bob',
-          wallet: '0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB',
-        },
-        contents: 'Hello, Bob!',
-      },
+        {
+        "target": "0x0101010101010101010101010101010101010101",
+        "message": "Howdy"
+      }]
     };
+
     try {
       const from = accounts[0];
       const sign = signTypedDataV3Result.innerHTML;
@@ -1586,54 +1609,52 @@ const initialize = async () => {
     const networkId = parseInt(networkDiv.innerHTML, 10);
     const chainId = parseInt(chainIdDiv.innerHTML, 16) || networkId;
     const msgParams = {
-      domain: {
-        chainId: chainId.toString(),
-        name: 'Ether Mail',
-        verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC',
-        version: '1',
-      },
-      message: {
-        contents: 'Hello, Bob!',
-        from: {
-          name: 'Cow',
-          wallets: [
-            '0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826',
-            '0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF',
+      "types": {
+          "EIP712Domain": [
+              {
+                  "name": "name",
+                  "type": "string"
+              },
+              {
+                  "name": "version",
+                  "type": "string"
+              },
+              {
+                  "name": "verifyingContract",
+                  "type": "address"
+              },
+              {
+                  "name": "chainId",
+                  "type": "uint256"
+              }
           ],
+          "RelayRequest": [
+              {
+                  "name": "target",
+                  "type": "address"
+              },
+              {
+                  "name": "message",
+                  "type": "string"
+              }
+          ]
+      },
+      "domain": {
+          "name": "EIP-712 Test - Relayed Transaction",
+          "version": "1",
+          "chainId": 1,
+          "verifyingContract": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
+      },
+      "primaryType": "RelayRequest",
+      "RelayRequest": [
+        {
+          "target": "0x0101010101010101010101010101010101010101",
+          "message": "Howdy",
         },
-        to: [
-          {
-            name: 'Bob',
-            wallets: [
-              '0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB',
-              '0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57',
-              '0xB0B0b0b0b0b0B000000000000000000000000000',
-            ],
-          },
-        ],
-      },
-      primaryType: 'Mail',
-      types: {
-        EIP712Domain: [
-          { name: 'name', type: 'string' },
-          { name: 'version', type: 'string' },
-          { name: 'chainId', type: 'uint256' },
-          { name: 'verifyingContract', type: 'address' },
-        ],
-        Group: [
-          { name: 'name', type: 'string' },
-          { name: 'members', type: 'Person[]' },
-        ],
-        Mail: [
-          { name: 'from', type: 'Person' },
-          { name: 'to', type: 'Person[]' },
-          { name: 'contents', type: 'string' },
-        ],
-        Person: [
-          { name: 'name', type: 'string' },
-          { name: 'wallets', type: 'address[]' },
-        ],
-      },
+        {
+        "target": "0x0101010101010101010101010101010101010101",
+        "message": "Howdy"
+      }]
     };
     try {
       const from = accounts[0];
@@ -1656,54 +1677,52 @@ const initialize = async () => {
     const networkId = parseInt(networkDiv.innerHTML, 10);
     const chainId = parseInt(chainIdDiv.innerHTML, 16) || networkId;
     const msgParams = {
-      domain: {
-        chainId,
-        name: 'Ether Mail',
-        verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC',
-        version: '1',
-      },
-      message: {
-        contents: 'Hello, Bob!',
-        from: {
-          name: 'Cow',
-          wallets: [
-            '0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826',
-            '0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF',
+      "types": {
+          "EIP712Domain": [
+              {
+                  "name": "name",
+                  "type": "string"
+              },
+              {
+                  "name": "version",
+                  "type": "string"
+              },
+              {
+                  "name": "verifyingContract",
+                  "type": "address"
+              },
+              {
+                  "name": "chainId",
+                  "type": "uint256"
+              }
           ],
+          "RelayRequest": [
+              {
+                  "name": "target",
+                  "type": "address"
+              },
+              {
+                  "name": "message",
+                  "type": "string"
+              }
+          ]
+      },
+      "domain": {
+          "name": "EIP-712 Test - Relayed Transaction",
+          "version": "1",
+          "chainId": 1,
+          "verifyingContract": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
+      },
+      "primaryType": "RelayRequest",
+      "RelayRequest": [
+        {
+          "target": "0x0101010101010101010101010101010101010101",
+          "message": "Howdy",
         },
-        to: [
-          {
-            name: 'Bob',
-            wallets: [
-              '0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB',
-              '0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57',
-              '0xB0B0b0b0b0b0B000000000000000000000000000',
-            ],
-          },
-        ],
-      },
-      primaryType: 'Mail',
-      types: {
-        EIP712Domain: [
-          { name: 'name', type: 'string' },
-          { name: 'version', type: 'string' },
-          { name: 'chainId', type: 'uint256' },
-          { name: 'verifyingContract', type: 'address' },
-        ],
-        Group: [
-          { name: 'name', type: 'string' },
-          { name: 'members', type: 'Person[]' },
-        ],
-        Mail: [
-          { name: 'from', type: 'Person' },
-          { name: 'to', type: 'Person[]' },
-          { name: 'contents', type: 'string' },
-        ],
-        Person: [
-          { name: 'name', type: 'string' },
-          { name: 'wallets', type: 'address[]' },
-        ],
-      },
+        {
+        "target": "0x0101010101010101010101010101010101010101",
+        "message": "Howdy"
+      }]
     };
     try {
       const from = accounts[0];
